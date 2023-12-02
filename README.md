@@ -29,3 +29,36 @@
       "required": ["Age", "Name", "Specialization"]
     }
 ```
+
+Тут у є поле "specialization", в цьому полі є обмеження на довжину вже, але перетворимо це все в регулярний вираз з забороної на спеціальні символи згідно завданню.
+ось саме регулярний вираз:
+
+`^(?!.*[#@%$]).{6,20}$`
+
+А змінений код виглядає наступним чином:
+```
+"Employee of the health center": {
+      "description": "Employee of the health center details",
+      "type": "object",
+      "properties": {
+        "Age": {
+          "description": "Employee age",
+          "type": "number",
+          "minimum": 0
+        },
+        "Name": {
+          "description": "Employee name",
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 50
+        },
+        "Specialization": {
+          "description": "Specialization",
+          "type": "string",
+          "pattern": "^(?!.*[#@%$]).{6,20}$"
+        }
+      },
+      "required": ["Age", "Name", "Specialization"]
+    }
+```
+
